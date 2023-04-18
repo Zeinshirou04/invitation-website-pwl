@@ -8,16 +8,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css">
+    <script src="https://kit.fontawesome.com/ba0903e616.js" crossorigin="anonymous"></script>
     <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-            fontFamily: {
-                poppins: [Poppins],
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['Poppins'],
+                    },
+                },
             },
         }
-      }
-    }
     </script>
     <title>Digital Invitation Maker | Made for Practice</title>
 </head>
@@ -26,9 +27,32 @@
         include '../bin/conn.php';
         include '../bin/login_conf.php';
     ?>
-    <main>
-        <nav class="container fixed flex justify-between align-middle top-0 bg-white/100 p-2">
-            <div class="mt-1 ml-1 order-firsts">
+    <main class="relative">
+        <section id="menu-popup" class="max-w-full transition delay-1000 ease-in duration-1000 hidden max-h-full h-full w-full top-0 bg-black/30 flex-row">
+            <div class="w-3/4 max-h-full h-full bg-white">
+                <div class="p-2 cursor-pointer w-12 h-12" id="inner-burger-icon">
+                    <svg class="w-12 h-12" data-v-17696d62="" viewBox="0 0 16 16" focusable="false" role="img" aria-label="list" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-list b-icon bi">
+                        <g data-v-17696d62="">
+                            <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
+                        </g>
+                    </svg>
+                </div>
+                <div class="mt-6">
+                    <div class="flex justify-center content-center flex-col flex-wrap">
+                        <i class="fa-regular fa-user fa-4x mx-auto"></i>
+                        <p class="mt-2">You haven't signed in</p>
+                    </div>
+                    <hr class="border-1 border-black w-32 mx-auto my-4 drop-shadow-xl shadow-black">
+                    <a href="#"><p class="ml-1 font-semibold text-center cursor-pointer">Sign In</p></a>
+                    <p class="text-center text-sm">or</p>
+                    <a href="#"><p class="ml-1 font-semibold text-center cursor-pointer">Sign Up</p></a>
+                    <hr class="border-1 border-black w-32 mx-auto my-4 drop-shadow-xl shadow-black">
+                </div>
+            </div>
+            <div id="blank-space" class="w-1/4 max-h-full h-full"></div>
+        </section>
+        <nav id="navbar-fixed" class="container fixed flex justify-between align-middle top-0 bg-white/100 p-1">
+            <div class="mt-1 ml-1 order-firsts cursor-pointer" id="outer-burger-icon">
                 <svg class="w-12 h-12" data-v-17696d62="" viewBox="0 0 16 16" focusable="false" role="img" aria-label="list" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-list b-icon bi">
                     <g data-v-17696d62="">
                         <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
@@ -51,11 +75,26 @@
                 <p class="text-center font-poppins mt-2">Just dive right in by clicking the button below!</p>
                 <input type="button" class="bg-blue-700 hover:bg-blue-400 mt-2 px-5 py-1.5 rounded-2xl text-white font-bold shadow-md shadow-blue-800 mx-auto transition-all cursor-pointer" value="Make your card">
             </section>
-            <section class="border-blue-400 border-2 mx-4 shadow-md shadow-slate-400 my-8 rounded-lg bg-transparent p-4">
+            <section class="border-blue-400 border-2 mx-4 shadow-md shadow-slate-400 mt-8 rounded-lg bg-transparent p-4">
                 <h1 class="font-bold text-2xl font-poppins text-blue-500">Everything <span class="text-slate-600">is easier.</span></h1>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt exercitationem doloremque tempore similique veniam. Asperiores veniam dignissimos cumque quidem et esse provident, neque velit nulla laudantium corrupti fugit nesciunt quisquam nihil fugiat sit culpa! Ut repellendus facilis reiciendis nihil dicta tempore incidunt, dignissimos animi magnam doloremque saepe excepturi quisquam rem?</p>
             </section>
         </article>
-    </main class="mb-4">
+        <footer class="container mt-4 max-w-full w-full">
+            <section class="shadow-lg shadow-black/20 p-2 bg-slate-600">
+                <div class="pl-2 pt-2">
+                    <h6 class="text-white font-poppins text-center">Copyright &#169; UMake Corp.</h6>
+                </div>
+                <div class="pl-2 pt-2 flex justify-center">
+                    <a href="https://www.instagram.com/liushensimp/" target="_blank"><i class="fa-brands fa-instagram fa-2xl cursor-pointer mt-3 mx-2 text-white hover:text-white/20 transition-all"></i></a>
+                    <a href="https://github.com/Zeinshirou04" target="_blank"><i class="fa-brands fa-square-github fa-2xl cursor-pointer mt-3 mx-2 text-white hover:text-white/20 transition-all"></i></a>
+                </div>
+                <div class="pl-2 pt-4">
+                    <p class="text-white/50 bottom-0 text-center">This website is made on 4th April 2023.</p>
+                </div>
+            </section>
+        </footer>
+    </main>
+    <script src="../bin/js/page-cont.js"></script>
 </body>
 </html>
