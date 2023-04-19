@@ -43,9 +43,8 @@
                         <p class="mt-2">You haven't signed in</p>
                     </div>
                     <hr class="border-1 border-black w-32 mx-auto my-4 drop-shadow-xl shadow-black">
-                    <a href="#"><p class="ml-1 font-semibold text-center cursor-pointer">Sign In</p></a>
-                    <p class="text-center text-sm">or</p>
-                    <a href="#"><p class="ml-1 font-semibold text-center cursor-pointer">Sign Up</p></a>
+                    <p class="text-center text-lg">Please sign in first</p>
+                    <a href="./login-page/"><p class="ml-1 font-semibold text-center cursor-pointer text-blue-500">Sign In</p></a>
                     <hr class="border-1 border-black w-32 mx-auto my-4 drop-shadow-xl shadow-black">
                 </div>
             </div>
@@ -60,7 +59,7 @@
                 </svg>
             </div>
             <div class="mt-1">
-                <img class="w-12" src="../assets/pngegg.png" alt="">
+                <a href="./"><img class="w-12" src="../assets/pngegg.png" alt=""></a>
             </div>
             <div class="mr-1 w-12 h-12"></div>
         </nav>

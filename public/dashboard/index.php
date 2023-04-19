@@ -11,10 +11,10 @@
     <?php 
         session_start();
         // Checking Cookies
-        if(!isset($_COOKIE["username"])) {
-            echo "Users " . $_COOKIE["username"] . " isn't logged in!";
+        if(!isset($_COOKIE['login-username'])) {
+            echo "Users " . $_COOKIE['login-username'] . " isn't logged in!";
         } else {
-            echo "Users " . $_COOKIE["username"] . " logged in!";
+            echo "Users " . $_COOKIE['login-username'] . " logged in!";
         }
     ?>
 </body>
