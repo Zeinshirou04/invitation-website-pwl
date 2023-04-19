@@ -25,7 +25,6 @@
 <body>
     <?php
         include '../bin/conn.php';
-        include '../bin/login_conf.php';
     ?>
     <main class="relative">
         <section id="menu-popup" class="max-w-full transition delay-1000 ease-in duration-1000 hidden max-h-full h-full w-full top-0 bg-black/30 flex-row">
@@ -40,7 +39,16 @@
                 <div class="mt-6">
                     <div class="flex justify-center content-center flex-col flex-wrap">
                         <i class="fa-regular fa-user fa-4x mx-auto"></i>
-                        <p class="mt-2">You haven't signed in</p>
+                        <p class="mt-2">
+                            <?php
+                                if(isset($_COOKIE['login-username'])) {
+                                    $userName = $_COOKIE['login-username'];
+                                    echo "Welcome back, $userName";
+                                } else if(!isset($_COOKIE['login-username'])) {
+                                    echo "You haven't signed in";
+                                }
+                            ?>
+                        </p>
                     </div>
                     <hr class="border-1 border-black w-32 mx-auto my-4 drop-shadow-xl shadow-black">
                     <p class="text-center text-lg">Please sign in first</p>

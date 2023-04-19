@@ -74,7 +74,7 @@ if(isset($_POST['logoutSubmit'])) {
             <form method="post" class="text-center mt-2">
                     <input type="submit" class="border border-blue-600 shadow-md shadow-black/20 w-24 h-8 mx-auto rounded-md bg-blue-500 hover:bg-blue-700 text-white" name="logoutSubmit" id="logoutSubmit" value="Log Out" required>
             </form>
-        </section>
+        </section>~
         <section class=" w-full max-w-full <?php if(isset($_COOKIE['login-username'])) { echo 'hidden'; } else { echo 'block'; } ?>" id="login-form">
             <h1 class="text-slate-600 text-center text-5xl font-bold leading-tight">Getting <span class="text-blue-500">Ready Your</span> Account</h1>
             <form method="post" name="user-login-form" class="mx-auto border-2 mt-4 border-slate-700 w-3/4 rounded-xl shadow-2xl shadow-black/20 h-auto">
