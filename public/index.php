@@ -1,4 +1,18 @@
 <!DOCTYPE html>
+<?php
+    session_start();
+    $dir = dirname(__DIR__);
+    include $dir . '/bin/conn.php';
+    // Checking if a user is Logging out
+    if(isset($_POST['logoutSubmit'])) {
+        session_destroy();
+        header('Location: ./login-page/');
+    } 
+    if(isset($_SESSION['user-name'])) {
+        // Retrieve user's name by SESSION
+        $userName = $_SESSION['user-name'];
+    }
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -24,7 +38,6 @@
 </head>
 <body>
     <?php
-        include '../bin/conn.php';
     ?>
     <main class="relative">
         <section id="menu-popup" class="max-w-full transition delay-1000 ease-in duration-1000 hidden max-h-full h-full w-full top-0 bg-black/30 flex-row">
@@ -41,19 +54,38 @@
                         <i class="fa-regular fa-user fa-4x mx-auto"></i>
                         <p class="mt-2">
                             <?php
-                                if(isset($_COOKIE['login-username'])) {
-                                    $userName = $_COOKIE['login-username'];
+                                if(isset($_SESSION['user-name'])) {
+                                    $userName = $_SESSION['user-name'];
                                     echo "Welcome back, $userName";
-                                } else if(!isset($_COOKIE['login-username'])) {
+                                } else if(!isset($_SESSION['user-name'])) {
                                     echo "You haven't signed in";
                                 }
                             ?>
                         </p>
                     </div>
-                    <hr class="border-1 border-black w-32 mx-auto my-4 drop-shadow-xl shadow-black">
-                    <p class="text-center text-lg">Please sign in first</p>
-                    <a href="./login-page/"><p class="ml-1 font-semibold text-center cursor-pointer text-blue-500">Sign In</p></a>
-                    <hr class="border-1 border-black w-32 mx-auto my-4 drop-shadow-xl shadow-black">
+                    <?php
+                        // Prompt if user is not logged in
+                        $loginPromptNo = '<hr class="border-1 border-black w-32 mx-auto my-4 drop-shadow-xl shadow-black">
+                        <p class="text-center text-lg">Please sign in first</p>
+                        <a href="./login-page/"><p class="ml-1 font-semibold text-center cursor-pointer text-blue-500">Sign In</p></a>';
+
+                        // Prompt if user is logged in
+                        $loginPromptYes = '<hr class="border-1 border-black w-32 mx-auto my-4 drop-shadow-xl shadow-black">
+                        <a href="./"><p class="ml-1 font-semibold text-center cursor-pointer text-blue-500">Home</p></a>
+                        <a href="./dashboard/"><p class="ml-1 font-semibold text-center cursor-pointer text-blue-500">My Profile</p></a>
+                        <a href="./dashboard/"><p class="ml-1 font-semibold text-center cursor-pointer text-blue-500">Dashboard</p></a>
+                        <form method="post" class="text-center">
+                            <input type="submit" class="ml-1 font-semibold text-center cursor-pointer text-blue-500" name="logoutSubmit" id="logoutSubmit" value="Sign Out">
+                        </form>';
+
+                        // Condition if SESSION is set, whether user is logged in or not
+                        if(isset($_SESSION['user-name'])) {
+                            echo "$loginPromptYes";
+                        } else if(!isset($_SESSION['user-name'])) {
+                            echo "$loginPromptNo";
+                        }
+                    ?>
+                    <hr class="border-1 border-black w-32 mx-auto my-4 drop-shadow-xl shadow-black">`
                 </div>
             </div>
             <div id="blank-space" class="w-1/4 max-h-full h-full"></div>

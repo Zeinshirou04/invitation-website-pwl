@@ -1,31 +1,36 @@
 <?php
-    include 'conn.php';
+    include dirname(__DIR__) . '/bin/conn.php';
     include_once dirname(__DIR__) . '/public/login-page/index.php';
 
     // Checking if users is submitted login
     if(isset($_POST['loginSubmit'])) {
         $userEmail = $_POST['userEmailLogin'];
         $userPass = $_POST['userPassLogin'];
-        $query = "SELECT * FROM user_login_information WHERE user_email = '$userEmail'";
+        $queryPass = "SELECT * FROM user_login_information WHERE user_password = '$userPass'";
 
         // Query Connect
-        $resultTake = mysqli_query($conn, $query);
-        if(mysqli_num_rows($resultTake) > 0) {
-            while($data = mysqli_fetch_assoc($resultTake)) {
-                if(strval($data['user_email']) == $userEmail) {
-                    if(strval($data['user_password']) == $userPass) {
-                        session_start();
-                        $cookie_name = strval($data['user_name']);
-                        setcookie('login-username', $cookie_name, 0, '/');
-                        header("Location: ../dashboard/index.php");
-                        mysqli_close($conn);
-                    } else {
-                        echo "Password is wrong!";
-                    }
-                } else {
-                    echo "Email is wrong!";
+        $resultTakePass = mysqli_query($conn, $queryPass);
+        if(mysqli_num_rows($resultTakePass) > 0) {
+            while($data = mysqli_fetch_assoc($resultTakePass)) {
+                if($data['user_email'] == $userEmail) {
+                    session_start();
+                    $sessionName = $data['user_name'];
+                    $_SESSION['user-name'] = $sessionName;
+                    header("Location: ../dashboard/");
+                    mysqli_close($conn);
                 }
             }
+            while($data = mysqli_fetch_assoc($resultTakePass)) {
+                if($data['user_email'] != $userEmail) {
+                $errMsg = "Email is incorrect";
+                echo "<script type='text/javascript'>alert('$errMsg');</script>";
+                $_POST = array();
+                break;
+                }
+            }
+        } else {
+            $errMsg = "Email or Password is incorrect or not registered";
+            echo "<script type='text/javascript'>alert('$errMsg');</script>";
         }
     }
 
@@ -42,11 +47,10 @@
 
         // Starting Session
         session_start();
-        $cookie_name = $userName;
-        setcookie('login-username', $cookie_name, 0, '/');
+        $sessionName = $userName;
+        $_SESSION['user-name'] = $sessionName;
 
-        // Opening MySql Connection
-        mysqli_query($conn, $query);
+        // Checking if Query return true
         if(mysqli_query($conn, $query)) {
 
             // Creating User only Tables
@@ -57,7 +61,7 @@
                 bride_name VARCHAR(255) NOT NULL,
                 marriage_date DATE NOT NULL,
                 reservation_date DATE NOT NULL,
-                reservation_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                reservation_time TIME NOT NULL,
                 reservation_place VARCHAR(255) NOT NULL,
                 PRIMARY KEY (id)
                 )";
@@ -68,6 +72,6 @@
                 mysqli_close($conn);
 
                 // Moving Page
-                header("Location: ../dashboard/index.php");
+                header("Location: ../dashboard/");
         }
     }
